@@ -1,4 +1,6 @@
 spring:
+  profiles:
+    active: dev
   datasource:
     druid: #连接池信息
       initial-size: 5
@@ -11,14 +13,13 @@ spring:
       test-while-idle: true
       time-between-eviction-runs-millis: 60000
       min-evictable-idle-time-millis: 300000
-  profiles:
-    active: dev
+
 
 
 
 
 mybatis-plus:
-  mapper-locations: classpath*:/mapper/*.xml
+  mapper-locations: classpath*:mapper/*.xml
   typeAliasesPackage: com.coco.tango.surfing.core.dal.domain
   global-config:
     db-config:
@@ -35,3 +36,6 @@ pagehelper:
   reasonable: true
   supportMethodsArguments: true
   params: count=countSql
+
+lck:
+  test: 1

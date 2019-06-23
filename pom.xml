@@ -30,6 +30,8 @@
         <guava.version>27.1-jre</guava.version>
         <tedis.version>1.1.8.4-RELEASE</tedis.version>
         <druid.version>1.1.10</druid.version>
+        <fastjson.version>1.2.54</fastjson.version>
+        <netty.version>4.1.25.Final</netty.version>
     </properties>
 
     <dependencyManagement>
@@ -89,7 +91,21 @@
                 <artifactId>druid-spring-boot-starter</artifactId>
                 <version>${druid.version}</version>
             </dependency>
+
+            <dependency>
+                <groupId>com.alibaba</groupId>
+                <artifactId>fastjson</artifactId>
+                <version>${fastjson.version}</version>
+            </dependency>
+
+            <dependency>
+                <groupId>io.netty</groupId>
+                <artifactId>netty-all</artifactId>
+                <version>${netty.version}</version>
+            </dependency>
         </dependencies>
+
+
     </dependencyManagement>
 
     <dependencies>
@@ -119,10 +135,7 @@
             <artifactId>spring-boot-starter-actuator</artifactId>
         </dependency>
 
-        <!--<dependency>-->
-        <!--<groupId>org.springframework.boot</groupId>-->
-        <!--<artifactId>spring-boot-starter-data-redis</artifactId>-->
-        <!--</dependency>-->
+
 
         <!--<dependency>-->
         <!--<groupId>org.springframework.boot</groupId>-->

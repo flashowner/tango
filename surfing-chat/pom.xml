@@ -56,6 +56,12 @@
             <version>2.0.3</version>
         </dependency>
 
+
+        <dependency>
+            <groupId>net.coobird</groupId>
+            <artifactId>thumbnailator</artifactId>
+        </dependency>
+
     </dependencies>
 
 </project>

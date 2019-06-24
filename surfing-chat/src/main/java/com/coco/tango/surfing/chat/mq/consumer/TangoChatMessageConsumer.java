@@ -2,7 +2,7 @@ package com.coco.tango.surfing.chat.mq.consumer;
 
 import com.alibaba.fastjson.JSONObject;
 import com.coco.tango.surfing.chat.bean.ChatMessage;
-import com.coco.tango.surfing.chat.service.impl.TangoHandlerServiceImpl;
+import com.coco.tango.surfing.chat.service.ws.impl.TangoHandlerServiceImpl;
 import lombok.extern.slf4j.Slf4j;
 import org.apache.rocketmq.spring.core.RocketMQListener;
 import org.springframework.beans.factory.annotation.Autowired;

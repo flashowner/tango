@@ -2,7 +2,7 @@ package com.coco.tango.surfing.chat.mq.producer;
 
 import com.coco.tango.surfing.Application;
 import com.coco.tango.surfing.chat.bean.ChatMessage;
-import com.coco.tango.surfing.chat.bootstrap.topic.DistributeTopicInitHandler;
+import com.coco.tango.surfing.chat.bootstrap.init.DistributeTopicInitHandler;
 import com.coco.tango.surfing.chat.constant.ChatMessageConstants;
 import lombok.extern.slf4j.Slf4j;
 import org.junit.Test;

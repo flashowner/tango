@@ -96,8 +96,9 @@ public class NettyConfig {
 
     /**
      * HTTP 请求 聚合 内容 最大值
+     * 10485760
      */
-    private int maxContext = 65536;
+    private int maxContext = 10485760;
 
     /**
      * websocket地址

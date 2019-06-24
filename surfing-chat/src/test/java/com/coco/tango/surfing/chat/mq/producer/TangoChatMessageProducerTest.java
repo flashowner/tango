@@ -23,7 +23,7 @@ public class TangoChatMessageProducerTest {
 
     @Test
     public void sendTest1() {
-        producer.send();
+//        producer.send();
     }
 }
 

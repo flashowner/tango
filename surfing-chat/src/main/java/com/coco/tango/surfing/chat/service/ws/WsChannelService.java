@@ -1,4 +1,4 @@
-package com.coco.tango.surfing.chat.service.channel.ws;
+package com.coco.tango.surfing.chat.service.ws;
 
 import io.netty.channel.Channel;
 

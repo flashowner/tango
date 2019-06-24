@@ -34,4 +34,29 @@ public class HttpConstant {
     public static final String CONTENT_TYPE = "Content-Type";
 
     public static final String APPLICATION_JSON = "application/json;charset=UTF-8";
+
+
+    /**
+     * 图片上传 根目录 KEY
+     */
+    public static final String FILE_UPLOAD_IMG_PATH = "http.upload.imgPath";
+    /**
+     * YY上传 根目录 KEY
+     */
+    public static final String FILE_UPLOAD_YY_PATH = "http.upload.yyPath";
+
+
+    /**
+     * 上传图片文件
+     */
+    public static final String UPLOARD_IMG_FILE = "/upload/chat/file/img";
+
+
+    /**
+     * 上传语音文件
+     */
+    public static final String UPLOARD_YY_FILE = "/upload/chat/file/yy";
+
+
+
 }

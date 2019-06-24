@@ -1,8 +1,9 @@
-package com.coco.tango.surfing.chat.service.channel.ws;
+package com.coco.tango.surfing.chat.service.ws.impl;
 
 import com.alibaba.fastjson.JSONObject;
 import com.coco.tango.surfing.chat.cache.redis.UserTopicCache;
-import com.coco.tango.surfing.chat.service.channel.cache.WsCacheMap;
+import com.coco.tango.surfing.chat.cache.local.WsCacheMap;
+import com.coco.tango.surfing.chat.service.ws.WsChannelService;
 import io.netty.channel.Channel;
 import io.netty.handler.codec.http.websocketx.TextWebSocketFrame;
 import org.springframework.beans.factory.annotation.Autowired;

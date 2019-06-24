@@ -1,6 +1,6 @@
 package com.coco.tango.surfing.chat.cache.redis;
 
-import com.coco.tango.surfing.chat.bootstrap.topic.DistributeTopicInitHandler;
+import com.coco.tango.surfing.chat.bootstrap.init.DistributeTopicInitHandler;
 import com.coco.tango.surfing.chat.constant.RedisConstant;
 import com.coco.tango.surfing.common.redis.impl.RedisBaseServiceImpl;
 import org.springframework.stereotype.Service;

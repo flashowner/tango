@@ -1,6 +1,6 @@
 package com.coco.tango.surfing.chat.mq.consumer.support;
 
-import com.coco.tango.surfing.chat.bootstrap.topic.DistributeTopicInitHandler;
+import com.coco.tango.surfing.chat.bootstrap.init.DistributeTopicInitHandler;
 import com.coco.tango.surfing.chat.config.RocketMQMessageListenerConfig;
 import com.coco.tango.surfing.chat.constant.MqConstants;
 import com.coco.tango.surfing.common.utils.SpringContextUtil;

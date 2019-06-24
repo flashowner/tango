@@ -1,6 +1,6 @@
-package com.coco.tango.surfing.chat.task;
+package com.coco.tango.surfing.chat.schedule;
 
-import com.coco.tango.surfing.chat.bootstrap.topic.DistributeTopicInitHandler;
+import com.coco.tango.surfing.chat.bootstrap.init.DistributeTopicInitHandler;
 import com.coco.tango.surfing.chat.cache.redis.HostTopicCache;
 import lombok.extern.slf4j.Slf4j;
 import org.springframework.beans.factory.annotation.Autowired;

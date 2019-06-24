@@ -15,3 +15,8 @@ rocketmq:
     secret-key: SK
 
 
+
+http:
+  upload:
+    imgPath: /Users/clinechen/tango/upload
+    yyPath: /Users/clinechen/tango/upload

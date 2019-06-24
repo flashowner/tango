@@ -15,6 +15,12 @@ public class ChatMessage {
 
     /**
      * 消息唯一Id
+     * <p>
+     * 群组Id + 发送人 +自增
+     * [] + [] + []
+     * 00 0000 0000
+     * 10 0000 0000
+     * 00 0000 0000
      */
     private String id;
 
@@ -45,15 +51,17 @@ public class ChatMessage {
     /**
      * 消息值
      */
-    private String value;
+    private Object value;
 
     /**
      * 发送消息 用户编码
+     * 10 0000 0000
      */
     private String sendUserCode;
 
     /**
      * 接受消息 用户编码
+     * 10 0000 0000
      */
     private String recvUserCode;
 

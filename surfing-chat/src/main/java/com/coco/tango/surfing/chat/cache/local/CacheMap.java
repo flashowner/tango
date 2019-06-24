@@ -1,4 +1,4 @@
-package com.coco.tango.surfing.chat.service.channel.cache;
+package com.coco.tango.surfing.chat.cache.local;
 
 import java.util.ArrayList;
 import java.util.List;

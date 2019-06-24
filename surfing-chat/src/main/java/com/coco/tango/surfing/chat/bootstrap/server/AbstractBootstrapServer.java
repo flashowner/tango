@@ -1,9 +1,12 @@
 package com.coco.tango.surfing.chat.bootstrap.server;
 
+import com.coco.tango.surfing.chat.bootstrap.server.handler.AbstractHttpHandler;
+import com.coco.tango.surfing.chat.bootstrap.server.handler.DefaultHttpHandler;
 import com.coco.tango.surfing.chat.config.NettyConfig;
 import com.coco.tango.surfing.chat.constant.BootstrapConstant;
-import com.coco.tango.surfing.chat.bootstrap.server.handler.DefaultHandler;
-import com.coco.tango.surfing.chat.service.HandlerBaseService;
+import com.coco.tango.surfing.chat.bootstrap.server.handler.DefaultWsHandler;
+import com.coco.tango.surfing.chat.service.http.HttpChannelServiceImpl;
+import com.coco.tango.surfing.chat.service.ws.HandlerBaseService;
 import com.coco.tango.surfing.common.utils.SpringContextUtil;
 import io.netty.channel.ChannelPipeline;
 import io.netty.handler.codec.http.HttpObjectAggregator;
@@ -43,14 +46,17 @@ public abstract class AbstractBootstrapServer implements BootstrapServer {
 //        }
         intProtocolHandler(channelPipeline, nettyConfig);
         channelPipeline.addLast(new IdleStateHandler(nettyConfig.getHeart(), 0, 0));
-        channelPipeline.addLast(new DefaultHandler(SpringContextUtil.getBean(HandlerBaseService.class)));
+        channelPipeline.addLast(new DefaultHttpHandler(new HttpChannelServiceImpl()));
+        channelPipeline.addLast(new DefaultWsHandler(SpringContextUtil.getBean(HandlerBaseService.class)));
     }
 
     private void intProtocolHandler(ChannelPipeline channelPipeline, NettyConfig nettyConfig) {
         channelPipeline.addLast(BootstrapConstant.HTTPCODE, new HttpServerCodec());
         channelPipeline.addLast(BootstrapConstant.AGGREGATOR, new HttpObjectAggregator(nettyConfig.getMaxContext()));
         channelPipeline.addLast(BootstrapConstant.CHUNKEDWRITE, new ChunkedWriteHandler());
-        channelPipeline.addLast(BootstrapConstant.WEBSOCKETHANDLER, new WebSocketServerProtocolHandler(nettyConfig.getWebSocketPath(), null, true, nettyConfig.getRevBuf()));
+        channelPipeline.addLast(BootstrapConstant.WEBSOCKETHANDLER, new WebSocketServerProtocolHandler(nettyConfig.getWebSocketPath()));
+
+
     }
 
 //    private void initSsl(InitNetty serverBean){

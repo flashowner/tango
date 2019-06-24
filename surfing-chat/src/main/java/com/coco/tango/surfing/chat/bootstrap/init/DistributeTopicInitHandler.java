@@ -1,10 +1,9 @@
-package com.coco.tango.surfing.chat.bootstrap.topic;
+package com.coco.tango.surfing.chat.bootstrap.init;
 
 import com.coco.tango.surfing.chat.cache.redis.HostTopicCache;
 import com.coco.tango.surfing.chat.constant.MqConstants;
 import com.coco.tango.surfing.chat.constant.RedisConstant;
 import com.coco.tango.surfing.chat.mq.consumer.support.ListenerContainerConfigurationIniter;
-import com.coco.tango.surfing.chat.mq.consumer.support.RocketMQMessageListenerConfigIniter;
 import com.coco.tango.surfing.common.redis.impl.RedisDistributedLock;
 import com.coco.tango.surfing.common.utils.IpUtils;
 import com.coco.tango.surfing.common.utils.SpringContextUtil;

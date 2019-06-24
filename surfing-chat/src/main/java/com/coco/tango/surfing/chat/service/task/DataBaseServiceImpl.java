@@ -1,4 +1,4 @@
-package com.coco.tango.surfing.chat.service.channel.task;
+package com.coco.tango.surfing.chat.service.task;
 
 
 import com.coco.tango.surfing.chat.bean.ChatMessage;

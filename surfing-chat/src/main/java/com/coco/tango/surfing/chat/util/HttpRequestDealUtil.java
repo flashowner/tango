@@ -56,27 +56,6 @@ public class HttpRequestDealUtil {
         return sendServerVO;
     }
 
-
-    /**
-     * 图片根目录
-     *
-     * @return
-     */
-    public static String imgBasePath() {
-        Environment environment = SpringContextUtil.getBean(Environment.class);
-        return environment.getProperty(HttpConstant.FILE_UPLOAD_IMG_PATH);
-    }
-
-    /**
-     * 语音根目录
-     *
-     * @return
-     */
-    public static String yyBasePath() {
-        Environment environment = SpringContextUtil.getBean(Environment.class);
-        return environment.getProperty(HttpConstant.FILE_UPLOAD_YY_PATH);
-    }
-
 }
 
     

@@ -5,8 +5,9 @@ import com.alibaba.fastjson.JSONObject;
 import com.coco.tango.surfing.chat.bean.ChatMessage;
 import com.coco.tango.surfing.chat.bootstrap.server.handler.AbstractHttpHandler;
 import com.coco.tango.surfing.chat.constant.ChatMessageConstants;
+import com.coco.tango.surfing.chat.service.http.file.ImgFileCommonDeal;
+import com.coco.tango.surfing.chat.service.http.file.YYFileCommonDeal;
 import com.coco.tango.surfing.chat.service.ws.HandlerBaseService;
-import com.coco.tango.surfing.chat.util.HttpRequestDealUtil;
 import com.coco.tango.surfing.common.utils.SpringContextUtil;
 import io.netty.channel.ChannelHandlerContext;
 import io.netty.handler.codec.http.FullHttpRequest;
@@ -15,15 +16,10 @@ import io.netty.handler.codec.http.HttpResponseStatus;
 import io.netty.handler.codec.http.LastHttpContent;
 import io.netty.handler.codec.http.multipart.*;
 import lombok.extern.slf4j.Slf4j;
-import net.coobird.thumbnailator.Thumbnails;
 import org.springframework.util.CollectionUtils;
 
-import java.awt.*;
-import java.awt.image.BufferedImage;
-import java.io.File;
 import java.io.IOException;
 import java.util.List;
-import java.util.UUID;
 import java.util.logging.Level;
 import java.util.logging.Logger;
 
@@ -38,14 +34,7 @@ public class HttpChannelServiceImpl implements HttpChannelService {
 
     private static final HttpDataFactory factory = new DefaultHttpDataFactory(true);
 
-    // query param used to download a file
-    private static final String FILE_QUERY_PARAM = "file";
-
     private HttpPostRequestDecoder decoder;
-
-
-    private static final int THUMB_MAX_WIDTH = 100;
-    private static final int THUMB_MAX_HEIGHT = 100;
 
     private JSONObject jsonObject;
 
@@ -130,7 +119,6 @@ public class HttpChannelServiceImpl implements HttpChannelService {
             Attribute attribute = (Attribute) data;
             // todo 获取 请求中 参数
             jsonObject.put(attribute.getName(), attribute.getValue());
-
         }
 
         if (data.getHttpDataType() == InterfaceHttpData.HttpDataType.FileUpload) {
@@ -150,46 +138,21 @@ public class HttpChannelServiceImpl implements HttpChannelService {
         }
     }
 
+
     /**
-     * Saves the uploaded file to disk.
+     * 保存图片到服务器
      *
-     * @param fileUpload FileUpload object that'll be saved
-     * @return name of the saved file. null if error occurred
+     * @param fileUpload
+     * @return
      */
     private JSONObject saveFileToDisk(FileUpload fileUpload) {
-        // full path of the new file to be saved
-        String filePath = null;
-        String upoadedFileName = fileUpload.getFilename();
-
-        // get the extension of the uploaded file
-        String extension = "";
-        int i = upoadedFileName.lastIndexOf('.');
-        if (i > 0) {
-            // get extension including the "."
-            extension = upoadedFileName.substring(i);
-        }
-
-        String uniqueBaseName = getUniqueId();
-        String fileName = uniqueBaseName + extension;
-
         try {
             if (ChatMessageConstants.SEND_PICTURE.equals(fileType)) {
-                // 图片
-                JSONObject jj = new JSONObject();
-                filePath = HttpRequestDealUtil.imgBasePath() + "/" + fileName;
-                jj.put("normal", filePath);
-                // enable to move into another
-                fileUpload.renameTo(new File(filePath));
-                if (isImageExtension(extension)) {
-                    String thumbname = createThumbnail(filePath, uniqueBaseName, extension);
-                    jj.put("thumb", HttpRequestDealUtil.imgBasePath() + "/" + thumbname);
-                }
+                JSONObject jj = SpringContextUtil.getBean(ImgFileCommonDeal.class).save(fileUpload);
                 jsonObject.put("value", jj);
             } else if (ChatMessageConstants.SEND_YY.equals(fileType)) {
-                // 语音
-                filePath = HttpRequestDealUtil.yyBasePath() + "/" + fileName;
-                // enable to move into another
-                fileUpload.renameTo(new File(filePath));
+
+                String fileName = SpringContextUtil.getBean(YYFileCommonDeal.class).save(fileUpload);
                 jsonObject.put("value", fileName);
             }
 
@@ -200,6 +163,12 @@ public class HttpChannelServiceImpl implements HttpChannelService {
         return jsonObject;
     }
 
+    /**
+     * 返回上传数据信息
+     *
+     * @param fileName
+     * @param ctx
+     */
     private void sendUploadedFileName(JSONObject fileName, ChannelHandlerContext ctx) {
         String msg = "Unexpected error occurred";
         String contentType = "application/json; charset=UTF-8";
@@ -222,88 +191,6 @@ public class HttpChannelServiceImpl implements HttpChannelService {
         sendError(ctx, status, "Failure: " + status.toString() + "\r\n");
     }
 
-    private static BufferedImage resizeImage(BufferedImage originalImage, int type) {
-
-        BufferedImage resizedImage = new BufferedImage(THUMB_MAX_WIDTH, THUMB_MAX_HEIGHT, type);
-        Graphics2D g = resizedImage.createGraphics();
-        g.drawImage(originalImage, 0, 0, THUMB_MAX_WIDTH, THUMB_MAX_HEIGHT, null);
-        g.dispose();
-
-        return resizedImage;
-    }
-
-    /**
-     * Creates a thumbnail of an image file
-     *
-     * @param fileFullPath full path of the source image
-     * @param fileNameBase Base name of the file i.e without extension
-     */
-    private String createThumbnail(String fileFullPath, String fileNameBase, String extension) {
-        String thumbImgName = fileNameBase + "_thumb" + extension; // thumbnail image base name
-        String thumbImageFullPath = HttpRequestDealUtil.imgBasePath() + "/" + thumbImgName; // all thumbs are jpg files
-
-        try {
-            Thumbnails.of(new File(fileFullPath))
-                    .size(100, 100)
-                    .toFile(new File(thumbImageFullPath));
-        } catch (IOException ex) {
-            Logger.getLogger(AbstractHttpHandler.class.getName()).log(Level.SEVERE, null, ex);
-            thumbImgName = "";
-        }
-
-//        Logger.getLogger(HttpStaticFileServerHandler.class.getName()).log(Level.SEVERE, null,
-//                "Creating thumbnail of image " + fileFullPath);
-//
-//        //Scalr.resize(null, THUMB_MAX_WIDTH, null);
-//        try {
-//            BufferedImage img = ImageIO.read(new File(fileFullPath));
-//            BufferedImage scaledImg = Scalr.resize(img, THUMB_MAX_WIDTH);
-//
-//            //BufferedImage scaledImg = Scalr.resize(img, Mode.AUTOMATIC, 640, 480);
-//            File destFile = new File(thumbImageFullPath);
-//
-//            ImageIO.write(scaledImg, "jpg", destFile);
-//        } catch (ImagingOpException | IOException | IllegalArgumentException e) {
-//            Logger.getLogger(HttpStaticFileServerHandler.class.getName()).log(Level.SEVERE, null, e);
-//            e.printStackTrace();
-//            System.out.println(e.toString());
-//            thumbImgName = "";
-//        }
-
-        return thumbImgName;
-
-    }
-
-
-    /**
-     * 判断是否是图片 后缀
-     *
-     * @param extension
-     * @return
-     */
-    private static boolean isImageExtension(String extension) {
-        boolean isImageFile = false;
-        String extensionInLowerCase = extension.toLowerCase();
-
-        isImageFile = extensionInLowerCase.equals(".jpg");
-        isImageFile |= extensionInLowerCase.equals(".png");
-        isImageFile |= extensionInLowerCase.equals(".jpeg");
-        isImageFile |= extensionInLowerCase.equals(".gif");
-
-        return isImageFile;
-    }
-
-
-    /**
-     * generates and returns a unique string that'll be used to save an uploaded
-     * file to disk
-     *
-     * @return generated unique string
-     */
-    private String getUniqueId() {
-        UUID uniqueId = UUID.randomUUID();
-        return uniqueId.toString();
-    }
 
 }
 

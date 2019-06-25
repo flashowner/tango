@@ -9,6 +9,7 @@ import com.coco.tango.surfing.chat.service.http.HttpChannelServiceImpl;
 import com.coco.tango.surfing.chat.service.ws.HandlerBaseService;
 import com.coco.tango.surfing.common.utils.SpringContextUtil;
 import io.netty.channel.ChannelPipeline;
+import io.netty.handler.codec.LengthFieldBasedFrameDecoder;
 import io.netty.handler.codec.http.HttpObjectAggregator;
 import io.netty.handler.codec.http.HttpServerCodec;
 import io.netty.handler.codec.http.websocketx.WebSocketServerProtocolHandler;
@@ -51,6 +52,7 @@ public abstract class AbstractBootstrapServer implements BootstrapServer {
     }
 
     private void intProtocolHandler(ChannelPipeline channelPipeline, NettyConfig nettyConfig) {
+//        channelPipeline.addLast(new LengthFieldBasedFrameDecoder(10*1024*1024,0,2));
         channelPipeline.addLast(BootstrapConstant.HTTPCODE, new HttpServerCodec());
         channelPipeline.addLast(BootstrapConstant.AGGREGATOR, new HttpObjectAggregator(nettyConfig.getMaxContext()));
         channelPipeline.addLast(BootstrapConstant.CHUNKEDWRITE, new ChunkedWriteHandler());

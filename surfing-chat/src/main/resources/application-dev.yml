@@ -16,7 +16,10 @@ rocketmq:
 
 
 
-http:
-  upload:
-    imgPath: /Users/clinechen/tango/upload
-    yyPath: /Users/clinechen/tango/upload
+tango:
+  http:
+    upload:
+      imgPath: /Users/clinechen/tango/chat/file/img
+      yyPath: /Users/clinechen/tango/chat/file/yy
+      imgRequestPath: http://10.194.33.79/tango/chat/file/img
+      yyRequestPath: http://10.194.33.79/tango/chat/file/yy

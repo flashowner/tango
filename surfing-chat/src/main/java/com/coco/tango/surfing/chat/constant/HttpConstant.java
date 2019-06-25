@@ -36,24 +36,34 @@ public class HttpConstant {
     public static final String APPLICATION_JSON = "application/json;charset=UTF-8";
 
 
-    /**
-     * 图片上传 根目录 KEY
-     */
-    public static final String FILE_UPLOAD_IMG_PATH = "http.upload.imgPath";
-    /**
-     * YY上传 根目录 KEY
-     */
-    public static final String FILE_UPLOAD_YY_PATH = "http.upload.yyPath";
+//    /**
+//     * 图片上传 根目录 KEY
+//     */
+//    public static final String FILE_UPLOAD_IMG_PATH = "tango.http.upload.imgPath";
+//    /**
+//     * YY上传 根目录 KEY
+//     */
+//    public static final String FILE_UPLOAD_YY_PATH = "tango.http.upload.yyPath";
+//
+//
+//    /**
+//     * 图片访问 根目录 KEY
+//     */
+//    public static final String FILE_REQUEST_IMG_PATH = "tango.http.upload.imgRequestPath";
+//    /**
+//     * YY访问 根目录 KEY
+//     */
+//    public static final String FILE_REQUEST_YY_PATH = "tango.http.upload.yyRequestPath";
 
 
     /**
-     * 上传图片文件
+     * 上传图片文件 请求URL
      */
     public static final String UPLOARD_IMG_FILE = "/upload/chat/file/img";
 
 
     /**
-     * 上传语音文件
+     * 上传语音文件 请求URL
      */
     public static final String UPLOARD_YY_FILE = "/upload/chat/file/yy";
 

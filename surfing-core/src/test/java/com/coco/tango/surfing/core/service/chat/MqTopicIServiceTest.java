@@ -1,7 +1,8 @@
-package com.coco.tango.surfing.core.service.topic;
+package com.coco.tango.surfing.core.service.chat;
 
 import com.coco.tango.surfing.core.UTBase;
-import com.coco.tango.surfing.core.dal.domain.topic.MqTopic;
+import com.coco.tango.surfing.core.dal.domain.chat.MqTopic;
+import com.coco.tango.surfing.core.service.chat.MqTopicIService;
 import org.junit.Assert;
 import org.junit.Test;
 import org.springframework.beans.factory.annotation.Autowired;

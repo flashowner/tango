@@ -1,6 +1,7 @@
 package com.coco.tango.surfing.chat.service.task;
 
-import com.coco.tango.surfing.chat.bean.ChatMessage;
+
+import com.coco.tango.surfing.core.dal.domain.chat.ChatMessage;
 
 /**
  * 写消息 基础服务

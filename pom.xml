@@ -28,7 +28,6 @@
         <java.version>1.8</java.version>
         <mybatis-plus-boot-starter.version>3.1.0</mybatis-plus-boot-starter.version>
         <guava.version>27.1-jre</guava.version>
-        <tedis.version>1.1.8.4-RELEASE</tedis.version>
         <druid.version>1.1.10</druid.version>
         <fastjson.version>1.2.54</fastjson.version>
         <netty.version>4.1.25.Final</netty.version>
@@ -79,12 +78,6 @@
                 <groupId>com.baomidou</groupId>
                 <artifactId>mybatis-plus-boot-starter</artifactId>
                 <version>${mybatis-plus-boot-starter.version}</version>
-            </dependency>
-
-            <dependency>
-                <groupId>com.taobao.tedis</groupId>
-                <artifactId>tedislock-spring-boot-starter</artifactId>
-                <version>${tedis.version}</version>
             </dependency>
 
             <dependency>

@@ -4,11 +4,12 @@ import com.coco.tango.surfing.chat.cache.redis.HostTopicCache;
 import com.coco.tango.surfing.chat.constant.MqConstants;
 import com.coco.tango.surfing.chat.constant.RedisConstant;
 import com.coco.tango.surfing.chat.mq.consumer.support.ListenerContainerConfigurationIniter;
+import com.coco.tango.surfing.chat.util.RedisKeyUtils;
 import com.coco.tango.surfing.common.redis.impl.RedisDistributedLock;
 import com.coco.tango.surfing.common.utils.IpUtils;
 import com.coco.tango.surfing.common.utils.SpringContextUtil;
-import com.coco.tango.surfing.core.dal.domain.topic.MqTopic;
-import com.coco.tango.surfing.core.service.topic.MqTopicIService;
+import com.coco.tango.surfing.core.dal.domain.chat.MqTopic;
+import com.coco.tango.surfing.core.service.chat.MqTopicIService;
 import lombok.extern.slf4j.Slf4j;
 import org.springframework.beans.factory.InitializingBean;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -65,7 +66,7 @@ public class DistributeTopicInitHandler implements InitializingBean {
             List<MqTopic> list = mqTopicIService.all();
             if (!CollectionUtils.isEmpty(list)) {
                 for (MqTopic mqTopic : list) {
-                    String key = topicCacheKey(mqTopic.getTopic());
+                    String key = RedisKeyUtils.hostTopicKey(mqTopic.getTopic());
                     if (StringUtils.isEmpty(key)) {
                         continue;
                     }
@@ -100,7 +101,7 @@ public class DistributeTopicInitHandler implements InitializingBean {
             }
             log.info("TopicInitHandler init success");
             // 维护本机占用TAG
-            // todo 用户在哪个机器上 key hash value  hash -》 userCode value tag
+            //  用户在哪个机器上 key hash value  hash -》 userCode value tag
         }
 
     }
@@ -108,6 +109,7 @@ public class DistributeTopicInitHandler implements InitializingBean {
     @Override
     public void afterPropertiesSet() throws Exception {
         log.info("TopicInitHandler init mq consumer for topic : {}", TANGO_SURFING_TOPIC);
+        // todo 多台机子 去除
 //        listenerContainerConfigurationIniter.registerContainer(
 //                RocketMQMessageListenerConfigIniter.getRocketMQMessageListenerConfig());
         log.info("TopicInitHandler init mq consumer for topic : {} success", TANGO_SURFING_TOPIC);
@@ -115,30 +117,15 @@ public class DistributeTopicInitHandler implements InitializingBean {
 
 
     /**
-     * 本机占用 TAG 缓存 key
+     * 本机占用 TOPIC 缓存 key
      *
      * @return
      */
     public static String getHostTopicCacheKey() {
         if (StringUtils.isEmpty(TANGO_SURFING_TOPIC_CACHE_KEY)) {
-            TANGO_SURFING_TOPIC_CACHE_KEY = topicCacheKey(TANGO_SURFING_TOPIC);
+            TANGO_SURFING_TOPIC_CACHE_KEY = RedisKeyUtils.hostTopicKey(TANGO_SURFING_TOPIC);
         }
         return TANGO_SURFING_TOPIC_CACHE_KEY;
-    }
-
-
-    /**
-     * TOPIC 缓存 key
-     *
-     * @param
-     * @return
-     */
-    private static String topicCacheKey(String topic) {
-        if (!StringUtils.isEmpty(topic)) {
-            return RedisConstant.REDIS_MQ_TOPIC_HOST_USE_PREFIX + topic;
-        } else {
-            return null;
-        }
     }
 
 

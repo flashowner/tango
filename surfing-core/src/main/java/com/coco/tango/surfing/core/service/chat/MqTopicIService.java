@@ -1,7 +1,7 @@
-package com.coco.tango.surfing.core.service.topic;
+package com.coco.tango.surfing.core.service.chat;
 
 import com.baomidou.mybatisplus.extension.service.IService;
-import com.coco.tango.surfing.core.dal.domain.topic.MqTopic;
+import com.coco.tango.surfing.core.dal.domain.chat.MqTopic;
 
 import java.util.List;
 

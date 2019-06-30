@@ -1,6 +1,6 @@
 package com.coco.tango.surfing.chat.service.ws;
 
-import com.coco.tango.surfing.chat.bean.ChatMessage;
+import com.coco.tango.surfing.core.dal.domain.chat.ChatMessage;
 import io.netty.channel.Channel;
 
 /**
@@ -18,7 +18,7 @@ public interface HandlerBaseService {
      * @param chatMessage 数据信息
      * @return 成功失败
      */
-    public boolean connOther(Channel channel, ChatMessage chatMessage);
+    public void connOther(Channel channel, ChatMessage chatMessage);
 
 
     /**
@@ -63,4 +63,9 @@ public interface HandlerBaseService {
      */
     void close(Channel channel);
 
+    /**
+     * 改变消息状态
+     * @param chatMessage
+     */
+    void changeMessageState(ChatMessage chatMessage);
 }

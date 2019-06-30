@@ -2,13 +2,13 @@ package com.coco.tango.surfing.chat.service.http;
 
 import com.alibaba.fastjson.JSONException;
 import com.alibaba.fastjson.JSONObject;
-import com.coco.tango.surfing.chat.bean.ChatMessage;
 import com.coco.tango.surfing.chat.bootstrap.server.handler.AbstractHttpHandler;
 import com.coco.tango.surfing.chat.constant.ChatMessageConstants;
 import com.coco.tango.surfing.chat.service.http.file.ImgFileCommonDeal;
 import com.coco.tango.surfing.chat.service.http.file.YYFileCommonDeal;
 import com.coco.tango.surfing.chat.service.ws.HandlerBaseService;
 import com.coco.tango.surfing.common.utils.SpringContextUtil;
+import com.coco.tango.surfing.core.dal.domain.chat.ChatMessage;
 import io.netty.channel.ChannelHandlerContext;
 import io.netty.handler.codec.http.FullHttpRequest;
 import io.netty.handler.codec.http.HttpContent;
@@ -92,7 +92,7 @@ public class HttpChannelServiceImpl implements HttpChannelService {
                         writeHttpData(data, ctx);
                         data.retain();
                     }
-                    // todo 消息发送给接收人
+                    //  消息发送给接收人
                     ChatMessage chatMessage = JSONObject.parseObject(jsonObject.toJSONString(), ChatMessage.class);
                     HandlerBaseService handlerBaseService = SpringContextUtil.getBean(HandlerBaseService.class);
                     handlerBaseService.sendToText(chatMessage);

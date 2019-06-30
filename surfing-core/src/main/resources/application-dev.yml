@@ -4,3 +4,6 @@ spring:
     url: jdbc:mysql://127.0.0.1:3306/tango_surfing?autoReconnect=true&characterEncoding=utf-8
     username: root
     password:
+  data:
+    mongodb:
+      uri: mongodb://127.0.0.1:27017/tango

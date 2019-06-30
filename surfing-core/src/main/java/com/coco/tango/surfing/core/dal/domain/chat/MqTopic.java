@@ -1,4 +1,4 @@
-package com.coco.tango.surfing.core.dal.domain.topic;
+package com.coco.tango.surfing.core.dal.domain.chat;
 
 import com.baomidou.mybatisplus.annotation.IdType;
 import com.baomidou.mybatisplus.annotation.TableId;

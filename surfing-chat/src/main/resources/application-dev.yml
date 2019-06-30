@@ -1,5 +1,7 @@
 
 
+
+
 rocketmq:
   name-server: 10.213.3.125:9876
   producer:
@@ -21,5 +23,7 @@ tango:
     upload:
       imgPath: /Users/clinechen/tango/chat/file/img
       yyPath: /Users/clinechen/tango/chat/file/yy
-      imgRequestPath: http://10.194.33.79/tango/chat/file/img
-      yyRequestPath: http://10.194.33.79/tango/chat/file/yy
+      imgRequestPath: http://192.168.0.103/tango/chat/file/img
+      yyRequestPath: http://192.168.0.103/tango/chat/file/yy
+
+

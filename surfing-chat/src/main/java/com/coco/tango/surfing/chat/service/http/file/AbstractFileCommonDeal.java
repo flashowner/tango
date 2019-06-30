@@ -16,15 +16,12 @@ public abstract class AbstractFileCommonDeal implements FileCommonDeal {
 
     @Override
     public <T> T save(FileUpload fileUpload) throws IOException {
-        // full path of the new file to be saved
         String filePath = null;
         String upoadedFileName = fileUpload.getFilename();
 
-        // get the extension of the uploaded file
         String extension = "";
         int i = upoadedFileName.lastIndexOf('.');
         if (i > 0) {
-            // get extension including the "."
             extension = upoadedFileName.substring(i);
         }
 
@@ -38,13 +35,11 @@ public abstract class AbstractFileCommonDeal implements FileCommonDeal {
         if (!file.exists()) {
             file.mkdirs();
         }
-        // 访问文件地址
-//        jj.put("normal", requestPath(fileName));
-
         // 保存文件地址
         filePath = directory + "/" + fileName;
         // enable to move into another
         fileUpload.renameTo(new File(filePath));
+        // 访问文件地址
         return otherDeal(fileUpload, filePath, uniqueBaseName,extension);
     }
 

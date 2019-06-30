@@ -8,6 +8,7 @@ package com.coco.tango.surfing.chat.constant;
  */
 public class ChatMessageConstants {
 
+
     /**
      * 建立WS 连接
      */
@@ -35,35 +36,14 @@ public class ChatMessageConstants {
     public static final String CLOSE_OTHER = "5";
 
     /**
-     * 系统返回客户端 代表 消息接收成功反馈
+     * 系统返回客户端 代表 消息反馈
      */
     public static final String SYSTEM_BACK_CLIENT = "6";
 
     /**
-     * 客户端返回系统 代表 消息接收成功反馈
+     * 客户端返回系统 代表 消息反馈
      */
     public static final String CLIENT_BACK_SYSTEM = "7";
-
-
-    /**
-     * 接收成功
-     */
-    public static final String CODE_SUCCESS = "10000";
-
-    /**
-     * 接收失败
-     */
-    public static final String CODE_FAILED = "11000";
-
-    /**
-     * 消息已读
-     */
-    public static final String CODE_READ = "20000";
-
-    /**
-     * 消息未读
-     */
-    public static final String CODE_UNREAD = "21000";
 
 
 //    public static final String TOKEN = "token";

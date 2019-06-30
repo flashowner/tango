@@ -1,8 +1,8 @@
 package com.coco.tango.surfing.chat.mq.consumer;
 
 import com.alibaba.fastjson.JSONObject;
-import com.coco.tango.surfing.chat.bean.ChatMessage;
 import com.coco.tango.surfing.chat.service.ws.impl.TangoHandlerServiceImpl;
+import com.coco.tango.surfing.core.dal.domain.chat.ChatMessage;
 import lombok.extern.slf4j.Slf4j;
 import org.apache.rocketmq.spring.core.RocketMQListener;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -25,9 +25,8 @@ public class TangoChatMessageConsumer implements RocketMQListener<ChatMessage> {
 
     @Override
     public void onMessage(ChatMessage message) {
-        // todo 消息回传处理
+        //  消息回传处理
         log.info("------- TangoChatMessageConsumer received: {} \n", JSONObject.toJSONString(message));
-//        log.info("------- TangoChatMessageConsumer received: {} \n", message);
         tangoHandlerService.distributeMessageDeal(message);
 
     }

@@ -10,7 +10,7 @@ import org.springframework.boot.autoconfigure.SpringBootApplication;
  * @date 2019-06-03
  */
 @SpringBootApplication
-@MapperScan("com.coco.tango.surfing.core.dal")
+@MapperScan("com.coco.tango.surfing.core.mapper")
 public class TestApplication {
 }
 

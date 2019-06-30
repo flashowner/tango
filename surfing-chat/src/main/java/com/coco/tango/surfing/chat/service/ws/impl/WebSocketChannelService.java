@@ -1,8 +1,8 @@
 package com.coco.tango.surfing.chat.service.ws.impl;
 
 import com.alibaba.fastjson.JSONObject;
-import com.coco.tango.surfing.chat.cache.redis.UserTopicCache;
 import com.coco.tango.surfing.chat.cache.local.WsCacheMap;
+import com.coco.tango.surfing.chat.cache.redis.UserTopicCache;
 import com.coco.tango.surfing.chat.service.ws.WsChannelService;
 import io.netty.channel.Channel;
 import io.netty.handler.codec.http.websocketx.TextWebSocketFrame;
@@ -26,7 +26,7 @@ public class WebSocketChannelService implements WsChannelService {
 
     @Override
     public void loginWsSuccess(Channel channel, String userCode) {
-        // todo 维护用户 - TOPIC
+        //  维护用户 - TOPIC
         WsCacheMap.saveWs(userCode, channel);
         WsCacheMap.saveAd(channel.remoteAddress().toString(), userCode);
         // 保存用户信息到redis
@@ -49,7 +49,6 @@ public class WebSocketChannelService implements WsChannelService {
         WsCacheMap.deleteAd(channel.remoteAddress().toString());
         WsCacheMap.deleteWs(token);
         channel.close();
-        // todo 删除用户 - TOPIC 暂定
     }
 
     @Override

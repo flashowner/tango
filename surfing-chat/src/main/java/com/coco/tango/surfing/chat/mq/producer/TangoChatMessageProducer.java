@@ -1,6 +1,6 @@
 package com.coco.tango.surfing.chat.mq.producer;
 
-import com.coco.tango.surfing.chat.bean.ChatMessage;
+import com.coco.tango.surfing.core.dal.domain.chat.ChatMessage;
 import org.apache.rocketmq.client.producer.SendCallback;
 import org.apache.rocketmq.client.producer.SendResult;
 import org.apache.rocketmq.spring.core.RocketMQTemplate;
@@ -32,7 +32,6 @@ public class TangoChatMessageProducer implements MqMessageProducer<ChatMessage> 
 
             public void onException(Throwable var1) {
                 // todo 记录消息 发送异常原因 处理
-                // todo 消息持久化
                 System.out.printf("async onException Throwable=%s %n", var1);
             }
 

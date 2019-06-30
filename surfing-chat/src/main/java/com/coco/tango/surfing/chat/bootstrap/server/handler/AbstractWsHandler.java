@@ -1,8 +1,10 @@
 package com.coco.tango.surfing.chat.bootstrap.server.handler;
 
+import com.alibaba.fastjson.JSONObject;
 import com.coco.tango.surfing.chat.constant.LogConstant;
 import com.coco.tango.surfing.chat.exception.NotFindLoginChannlException;
 import com.coco.tango.surfing.chat.service.ws.HandlerBaseService;
+import com.coco.tango.surfing.core.dal.domain.chat.ChatMessage;
 import io.netty.channel.ChannelHandlerContext;
 import io.netty.channel.SimpleChannelInboundHandler;
 import io.netty.handler.codec.http.websocketx.BinaryWebSocketFrame;
@@ -38,10 +40,17 @@ public abstract class AbstractWsHandler extends SimpleChannelInboundHandler<WebS
 
     protected abstract HandlerBaseService getHandlerService();
 
+
+    @Override
+    public void channelActive(ChannelHandlerContext ctx) throws Exception {
+        super.channelActive(ctx);
+    }
+
     @Override
     public void channelInactive(ChannelHandlerContext ctx) throws Exception {
         log.info(LogConstant.CHANNELINACTIVE, ctx.channel().remoteAddress().toString(), LogConstant.CLOSE_SUCCESS);
         try {
+            // todo 记录用户离线时间
             getHandlerService().close(ctx.channel());
         } catch (NotFindLoginChannlException e) {
             log.error(LogConstant.NOTFINDLOGINCHANNLEXCEPTION, ctx.channel().localAddress().toString(),e);

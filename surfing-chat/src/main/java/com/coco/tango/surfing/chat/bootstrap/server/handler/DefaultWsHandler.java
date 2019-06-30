@@ -1,10 +1,10 @@
 package com.coco.tango.surfing.chat.bootstrap.server.handler;
 
 import com.alibaba.fastjson.JSONObject;
-import com.coco.tango.surfing.chat.bean.ChatMessage;
 import com.coco.tango.surfing.chat.constant.ChatMessageConstants;
 import com.coco.tango.surfing.chat.constant.LogConstant;
 import com.coco.tango.surfing.chat.service.ws.HandlerBaseService;
+import com.coco.tango.surfing.core.dal.domain.chat.ChatMessage;
 import io.netty.channel.Channel;
 import io.netty.channel.ChannelHandler;
 import io.netty.channel.ChannelHandlerContext;
@@ -38,6 +38,7 @@ public class DefaultWsHandler extends AbstractWsHandler {
     @Override
     protected void textDoMessage(ChannelHandlerContext ctx, TextWebSocketFrame msg) {
         Channel channel = ctx.channel();
+        log.info("textDoMessage : {}",msg.text());
         ChatMessage chatMessage = JSONObject.parseObject(msg.text(), ChatMessage.class);
         if (!validateChatMessage(channel, chatMessage)) {
             return;
@@ -56,10 +57,9 @@ public class DefaultWsHandler extends AbstractWsHandler {
             case ChatMessageConstants.SEND_TEXT:
                 handlerBaseService.sendToText(channel, chatMessage);
                 break;
-            case ChatMessageConstants.SYSTEM_BACK_CLIENT:
-                break;
-            // todo  客户端反馈 接收成功 已读
             case ChatMessageConstants.CLIENT_BACK_SYSTEM:
+                //  客户端反馈 接收成功
+                handlerBaseService.changeMessageState(chatMessage);
                 break;
             default:
                 break;

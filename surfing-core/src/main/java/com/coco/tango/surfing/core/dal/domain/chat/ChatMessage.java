@@ -18,12 +18,8 @@ public class ChatMessage implements Serializable {
     private static final long serialVersionUID = 1152865686051397835L;
     /**
      * 消息唯一Id
+     * 由 mongodb 生成
      * <p>
-     * 群组Id + 发送人 +自增
-     * [] + [] + []
-     * 00 0000 0000
-     * 10 0000 0000
-     * 00 0000 0000
      */
     @Id
     private String id;

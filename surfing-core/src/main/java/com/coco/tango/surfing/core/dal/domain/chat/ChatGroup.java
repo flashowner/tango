@@ -25,6 +25,7 @@ public class ChatGroup implements Serializable {
 
     /**
      * 用户Id
+     * // todo 修改数据结构
      */
     private String userCode;
 

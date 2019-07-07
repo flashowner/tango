@@ -11,13 +11,17 @@
 
     <artifactId>surfing-app</artifactId>
 
+
+    <!--<properties>-->
+        <!--<start-class>com.coco.tango.surfing.Application</start-class>-->
+    <!--</properties>-->
+
     <dependencies>
 
         <dependency>
             <groupId>com.coco.tango</groupId>
             <artifactId>surfing-chat</artifactId>
         </dependency>
-
 
 
         <dependency>
@@ -54,4 +58,22 @@
         </dependency>
     </dependencies>
 
+
+    <build>
+        <finalName>${project.artifactId}</finalName>
+        <plugins>
+            <plugin>
+                <groupId>org.springframework.boot</groupId>
+                <artifactId>spring-boot-maven-plugin</artifactId>
+                <executions>
+                    <execution>
+                        <goals>
+                            <goal>repackage</goal>
+                        </goals>
+                    </execution>
+                </executions>
+            </plugin>
+
+        </plugins>
+    </build>
 </project>

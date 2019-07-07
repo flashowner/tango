@@ -1,6 +1,29 @@
-#
-#
-#
-#
-#rocketmq:
-#  name-server: mware-rocketmq.yst.com.cn:9876;mware-rocketmq1.yst.com.cn:9876
+
+
+
+
+rocketmq:
+  name-server: 10.213.3.125:9876
+  producer:
+    group: tango-surfing-producer-group
+    send-message-timeout: 300000
+    compress-message-body-threshold: 4096
+    max-message-size: 4194304
+    retry-times-when-send-async-failed: 0
+    retry-times-when-send-failed: 2
+    retry-next-server: true
+  consumer:
+    access-key: AK
+    secret-key: SK
+
+
+
+tango:
+  http:
+    upload:
+      imgPath: /home/tango/chat/file/img
+      yyPath: /home/tango/chat/file/yy
+      imgRequestPath: http://47.111.128.87/tango/chat/file/img
+      yyRequestPath: http://47.111.128.87/tango/chat/file/yy
+
+

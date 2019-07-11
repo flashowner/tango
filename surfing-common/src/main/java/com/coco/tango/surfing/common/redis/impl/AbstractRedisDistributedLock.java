@@ -45,7 +45,7 @@ import java.util.concurrent.ExecutionException;
 public abstract class AbstractRedisDistributedLock implements DistributedLock {
 
 
-    private RedisTemplate<Object, Object> redisTemplate;
+    private RedisTemplate<String, Object> redisTemplate;
 
     private ThreadLocal<String> lockThreadLocal = new ThreadLocal<>();
 
@@ -226,11 +226,11 @@ public abstract class AbstractRedisDistributedLock implements DistributedLock {
     }
 
 
-    public void setRedisTemplate(RedisTemplate<Object, Object> redisTemplate) {
+    public void setRedisTemplate(RedisTemplate<String, Object> redisTemplate) {
         this.redisTemplate = redisTemplate;
     }
 
-    public RedisTemplate<Object, Object> getRedisTemplate() {
+    public RedisTemplate<String, Object> getRedisTemplate() {
         return redisTemplate;
     }
 }

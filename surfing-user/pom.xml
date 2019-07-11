@@ -12,4 +12,21 @@
     <artifactId>surfing-user</artifactId>
 
 
+    <dependencies>
+        <dependency>
+            <groupId>com.coco.tango</groupId>
+            <artifactId>surfing-common</artifactId>
+        </dependency>
+
+        <dependency>
+            <groupId>com.coco.tango</groupId>
+            <artifactId>surfing-core</artifactId>
+        </dependency>
+        <dependency>
+            <groupId>commons-codec</groupId>
+            <artifactId>commons-codec</artifactId>
+        </dependency>
+    </dependencies>
+
+
 </project>

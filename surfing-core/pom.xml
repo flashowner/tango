@@ -13,6 +13,12 @@
 
 
     <dependencies>
+
+        <dependency>
+            <groupId>com.coco.tango</groupId>
+            <artifactId>surfing-common</artifactId>
+        </dependency>
+
         <dependency>
             <groupId>com.alibaba</groupId>
             <artifactId>druid-spring-boot-starter</artifactId>

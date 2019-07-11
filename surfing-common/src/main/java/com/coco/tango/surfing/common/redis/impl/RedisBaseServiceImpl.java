@@ -113,8 +113,8 @@ public class RedisBaseServiceImpl<K, HK, V> implements RedisBaseService<K, HK, V
     public boolean setNx(K key, V value) {
         if (key != null && value != null) {
             log.debug("redis setNx key:{} for value:{} ", key, value);
-            RedisConnectionFactory redisConnectionFactory=redisTemplate.getConnectionFactory();
-            RedisConnection redisConnection=redisConnectionFactory.getConnection();
+            RedisConnectionFactory redisConnectionFactory = redisTemplate.getConnectionFactory();
+            RedisConnection redisConnection = redisConnectionFactory.getConnection();
             try {
                 byte[] keyByte = redisTemplate.getStringSerializer().serialize(key);
                 byte[] valueByte = redisTemplate.getValueSerializer().serialize(value);
@@ -122,7 +122,7 @@ public class RedisBaseServiceImpl<K, HK, V> implements RedisBaseService<K, HK, V
             } catch (Exception e) {
                 log.error("setNx error for key {} {}", key, e.getMessage(), e);
             } finally {
-                RedisConnectionUtils.releaseConnection(redisConnection,redisConnectionFactory);
+                RedisConnectionUtils.releaseConnection(redisConnection, redisConnectionFactory);
             }
         } else {
             log.error("there are some problems to redis setNx key:{} for value:{} ", key, value);

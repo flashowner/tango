@@ -4,19 +4,22 @@
 
     <!-- 通用查询映射结果 -->
     <resultMap id="BaseResultMap" type="com.coco.tango.surfing.core.dal.domain.test.TestQuestion">
-        <id column="id" property="id" />
-        <result column="content" property="content" />
-        <result column="order_num" property="orderNum" />
-
-        <result column="deleted" property="deleted" />
-        <result column="create_datetime" property="createDatetime" />
-        <result column="update_datetime" property="updateDatetime" />
-        <result column="create_user" property="createUser" />
-        <result column="update_user" property="updateUser" />
+        <id column="id" property="id"/>
+        <result column="content" property="content"/>
+        <result column="order_num" property="orderNum"/>
+        <result column="create_type" property="createType"/>
+        <result column="question_type" property="questionType"/>
 
 
-        <collection property="testQuestionChioces" javaType="java.util.ArrayList"
-                    ofType="com.coco.tango.surfing.core.dal.domain.test.TestQuestionChioce">
+        <result column="deleted" property="deleted"/>
+        <result column="create_datetime" property="createDatetime"/>
+        <result column="update_datetime" property="updateDatetime"/>
+        <result column="create_user" property="createUser"/>
+        <result column="update_user" property="updateUser"/>
+
+
+        <collection property="testQuestionChoices" javaType="java.util.ArrayList"
+                    ofType="com.coco.tango.surfing.core.dal.domain.test.TestQuestionChoice">
             <result column="question_id" property="questionId"/>
             <result column="qu_content" property="content"/>
             <result column="qu_order_num" property="orderNum"/>
@@ -27,17 +30,29 @@
 
     <!-- 通用查询结果列 -->
     <sql id="Base_Column_List">
-        id, content, order_num, deleted, create_datetime, update_datetime, create_user, update_user
+        id, content, order_num, create_type, question_type, deleted, create_datetime, update_datetime, create_user, update_user
     </sql>
 
     <select id="selectAll" resultMap="BaseResultMap">
         select qu.*,
-               quc.content as qu_content,
+               quc.content   as qu_content,
                quc.order_num as qu_order_num,
                quc.question_id,
                quc.order_char
-        from t_test_question qu left join t_test_question_chioce quc on qu.id=quc.question_id and quc.deleted = 0
+        from t_test_question qu
+                 left join t_test_question_choice quc on qu.id = quc.question_id and quc.deleted = 0
         where qu.deleted = 0
+        <if test="createType!=null">
+            and create_type = #{createType}
+        </if>
+        <if test="questionType!=null">
+            and question_type = #{questionType}
+        </if>
+        <if test="createUser!=null">
+            and create_user = #{createUser}
+        </if>
+
     </select>
+
 
 </mapper>

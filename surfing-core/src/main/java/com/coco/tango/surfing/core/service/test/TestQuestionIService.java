@@ -14,6 +14,16 @@ import java.util.List;
 public interface TestQuestionIService extends IService<TestQuestion> {
 
 
-    List<TestQuestion> selectAll();
+    /**
+     * 获取 所有 题目
+     * @return
+     */
+    List<TestQuestion> selectAll(TestQuestion testQuestion);
 
+
+    /**
+     * 获取 系统题目
+     * @return
+     */
+    List<TestQuestion> systemQuestion();
 }

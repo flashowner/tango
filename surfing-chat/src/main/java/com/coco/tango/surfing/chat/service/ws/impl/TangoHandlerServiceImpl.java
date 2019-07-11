@@ -11,7 +11,7 @@ import com.coco.tango.surfing.core.dal.domain.chat.ChatMessage;
 import com.coco.tango.surfing.core.dal.domain.chat.ChatMessageState;
 import com.coco.tango.surfing.core.service.chat.ChatGroupIService;
 import com.coco.tango.surfing.core.service.chat.ChatMessageIService;
-import com.coco.tango.surfing.core.service.user.UserIService;
+import com.coco.tango.surfing.core.service.user.TangoUserIService;
 import com.google.common.collect.Lists;
 import io.netty.channel.Channel;
 import lombok.extern.slf4j.Slf4j;
@@ -54,7 +54,7 @@ public class TangoHandlerServiceImpl implements HandlerBaseService {
     private UserTopicCache userTopicCache;
 
     @Autowired
-    private UserIService userIService;
+    private TangoUserIService userIService;
 
     @Override
     public void login(Channel channel, ChatMessage chatMessage) {

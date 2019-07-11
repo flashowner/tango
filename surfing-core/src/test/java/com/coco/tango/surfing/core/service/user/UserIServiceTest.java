@@ -1,11 +1,9 @@
 package com.coco.tango.surfing.core.service.user;
 
 import com.coco.tango.surfing.core.UTBase;
-import com.coco.tango.surfing.core.dal.domain.user.User;
+import com.coco.tango.surfing.core.dal.domain.user.TangoUser;
 import org.junit.Test;
 import org.springframework.beans.factory.annotation.Autowired;
-
-import java.util.Date;
 
 /**
  * 用户
@@ -16,14 +14,14 @@ import java.util.Date;
 public class UserIServiceTest extends UTBase {
 
     @Autowired
-    private UserIService userIService;
+    private TangoUserIService userIService;
 
 
     @Test
     public void saveTest() {
-        User user = new User();
-        user.setOnLineTime(new Date());
-        User heihei = userIService.save(user);
+        TangoUser user = new TangoUser();
+//        user.setOnLineTime(new Date());
+        userIService.save(user);
 
 
         System.out.println(1);

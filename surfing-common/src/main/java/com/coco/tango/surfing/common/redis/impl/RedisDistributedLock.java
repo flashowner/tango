@@ -16,7 +16,7 @@ public class RedisDistributedLock extends AbstractRedisDistributedLock {
 
     @Autowired
     @Override
-    public void setRedisTemplate(RedisTemplate<Object, Object> redisTemplate) {
+    public void setRedisTemplate(RedisTemplate<String, Object> redisTemplate) {
         super.setRedisTemplate(redisTemplate);
     }
 }

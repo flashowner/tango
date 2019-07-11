@@ -1,0 +1,15 @@
+package com.coco.tango.surfing.core.dal.mapper.test;
+
+import com.baomidou.mybatisplus.core.mapper.BaseMapper;
+import com.coco.tango.surfing.core.dal.domain.test.UserQuestionAnswer;
+import org.apache.ibatis.annotations.Mapper;
+
+/**
+ * 用户作答
+ *
+ * @author ckli01
+ * @date 2019-07-09
+ */
+@Mapper
+public interface UserQuestionAnswerMapper extends BaseMapper<UserQuestionAnswer> {
+}

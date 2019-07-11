@@ -39,6 +39,18 @@ public class TestQuestion extends BaseDomain implements Serializable {
      */
     private Integer orderNum;
 
+
+    /**
+     * 创建类型 0-系统题目 1-用户自定义题目
+     */
+    private Integer createType;
+
+
+    /**
+     * 题目类型 0-选择题 1-填空题
+     */
+    private Integer questionType;
+
     /**
      * 数据逻辑状态
      */
@@ -46,7 +58,10 @@ public class TestQuestion extends BaseDomain implements Serializable {
     private Integer deleted;
 
 
-    private List<TestQuestionChioce> testQuestionChioces;
+    /**
+     * 题目选项信息
+     */
+    private List<TestQuestionChoice> testQuestionChoices;
 
 
 }

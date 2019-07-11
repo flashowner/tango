@@ -2,12 +2,11 @@ package com.coco.tango.surfing.core.service.test;
 
 import com.coco.tango.surfing.core.UTBase;
 import com.coco.tango.surfing.core.dal.domain.test.TestQuestion;
-import com.coco.tango.surfing.core.dal.domain.test.TestQuestionChioce;
-import com.coco.tango.surfing.core.service.test.TestQuestionChioceIService;
-import com.coco.tango.surfing.core.service.test.TestQuestionIService;
+import com.coco.tango.surfing.core.dal.domain.test.TestQuestionChoice;
 import org.junit.Assert;
 import org.junit.Test;
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.context.annotation.Import;
 
 import java.util.ArrayList;
 import java.util.List;
@@ -24,7 +23,7 @@ public class TestQuestionIServiceTest extends UTBase {
     private TestQuestionIService testQuestionService;
 
     @Autowired
-    private TestQuestionChioceIService chioceIService;
+    private TestQuestionChoiceIService choiceIService;
 
     @Test
     public void insertTest() {
@@ -35,10 +34,9 @@ public class TestQuestionIServiceTest extends UTBase {
 
         boolean b = testQuestionService.save(testQuestion);
 
+        List<TestQuestionChoice> list = new ArrayList<>();
 
-        List<TestQuestionChioce> list = new ArrayList<>();
-
-        TestQuestionChioce testQuestionChioce = new TestQuestionChioce();
+        TestQuestionChoice testQuestionChioce = new TestQuestionChoice();
 
         testQuestionChioce.setContent("不是");
         testQuestionChioce.setOrderChar("A");
@@ -46,8 +44,7 @@ public class TestQuestionIServiceTest extends UTBase {
         testQuestionChioce.setQuestionId(testQuestion.getId());
         list.add(testQuestionChioce);
 
-
-        testQuestionChioce = new TestQuestionChioce();
+        testQuestionChioce = new TestQuestionChoice();
 
         testQuestionChioce.setContent("是");
         testQuestionChioce.setOrderChar("B");
@@ -56,19 +53,19 @@ public class TestQuestionIServiceTest extends UTBase {
         list.add(testQuestionChioce);
 
 
-        boolean c = chioceIService.saveBatch(list);
+        boolean c = choiceIService.saveBatch(list);
 
         Assert.assertTrue(c);
     }
 
 
+
     @Test
-    public void searchTest() {
-        List<TestQuestion> list = testQuestionService.selectAll();
+    public void systemQuestionTest() {
+        List<TestQuestion> list = testQuestionService.systemQuestion();
+
         Assert.assertNotNull(list);
     }
-
-
 }
 
     

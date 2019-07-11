@@ -12,4 +12,16 @@
     <artifactId>surfing-match</artifactId>
 
 
+    <dependencies>
+        <dependency>
+            <groupId>com.coco.tango</groupId>
+            <artifactId>surfing-common</artifactId>
+        </dependency>
+
+        <dependency>
+            <groupId>com.coco.tango</groupId>
+            <artifactId>surfing-core</artifactId>
+        </dependency>
+    </dependencies>
+
 </project>

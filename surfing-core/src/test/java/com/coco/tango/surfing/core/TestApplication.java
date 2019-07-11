@@ -2,6 +2,7 @@ package com.coco.tango.surfing.core;
 
 import org.mybatis.spring.annotation.MapperScan;
 import org.springframework.boot.autoconfigure.SpringBootApplication;
+import org.springframework.context.annotation.ComponentScan;
 
 /**
  * UT 启动类
@@ -9,8 +10,7 @@ import org.springframework.boot.autoconfigure.SpringBootApplication;
  * @author ckli01
  * @date 2019-06-03
  */
-@SpringBootApplication
-@MapperScan("com.coco.tango.surfing.core.mapper")
+@SpringBootApplication(scanBasePackages = "com.coco.tango.surfing")
 public class TestApplication {
 }
 

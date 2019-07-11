@@ -3,7 +3,6 @@ package com.coco.tango.surfing.core.dal.mapper.test;
 import com.baomidou.mybatisplus.core.mapper.BaseMapper;
 import com.coco.tango.surfing.core.dal.domain.test.TestQuestion;
 import org.apache.ibatis.annotations.Mapper;
-import org.springframework.stereotype.Repository;
 
 import java.util.List;
 
@@ -16,5 +15,11 @@ import java.util.List;
 @Mapper
 public interface TestQuestionMapper extends BaseMapper<TestQuestion> {
 
-    List<TestQuestion> selectAll();
+    /**
+     * 根据 查询 条件 查询
+     * @param testQuestion
+     * @return
+     */
+    List<TestQuestion> selectAll(TestQuestion testQuestion);
+
 }

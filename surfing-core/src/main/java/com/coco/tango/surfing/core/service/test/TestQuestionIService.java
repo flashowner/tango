@@ -26,4 +26,10 @@ public interface TestQuestionIService extends IService<TestQuestion> {
      * @return
      */
     List<TestQuestion> systemQuestion();
+
+    /**
+     * 获取 系统题目 ids
+     * @return
+     */
+    List<Long> systemQuestionIds();
 }

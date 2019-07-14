@@ -10,7 +10,7 @@ import lombok.Data;
  */
 
 @Data
-public class UserQuestionAnswerVO {
+public class    UserQuestionAnswerVO {
 
     /**
      * 题目Id
@@ -22,6 +22,12 @@ public class UserQuestionAnswerVO {
      * 用户作答
      */
     private String answer;
+
+
+    /**
+     * 分数
+     */
+    private Double score;
 
 
 }

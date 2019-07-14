@@ -34,4 +34,13 @@
         limit 0,1
     </select>
 
+    <!-- 分页查用户Id -->
+    <select id="listByPages" resultType="java.lang.Long">
+        select id
+        from t_user_tango
+        where deleted = 0
+        order by id ASC
+        limit #{startRow},#{size};
+    </select>
+
 </mapper>

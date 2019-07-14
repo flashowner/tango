@@ -12,5 +12,7 @@ spring:
 
 
 wx:
-  app-id: 1
-  secret: 2
+  app-id: wx6a86305a68419832
+  secret: 49fa43256596ff23c9246d757b0b9d17
+
+

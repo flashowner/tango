@@ -55,6 +55,12 @@ public class TestQuestionChoice extends BaseDomain implements Serializable {
      */
     private String correctAnswer;
 
+
+    /**
+     * 分数
+     */
+    private Double score;
+
     /**
      * 数据逻辑状态
      */

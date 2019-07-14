@@ -5,6 +5,8 @@ import com.coco.tango.surfing.core.dal.domain.user.TangoUser;
 import org.apache.ibatis.annotations.Mapper;
 import org.apache.ibatis.annotations.Param;
 
+import java.util.List;
+
 /**
  * Tango 用户  Mapper
  *
@@ -21,4 +23,13 @@ public interface TangoUserMapper extends BaseMapper<TangoUser> {
      * @return
      */
     String getLastCode(@Param("prefix") String prefix);
+
+    /**
+     * 分页获取 用户Id
+     *
+     * @param startRow
+     * @param size
+     * @return
+     */
+    List<Long> listByPages(@Param("startRow")Long startRow,@Param("size") int size);
 }

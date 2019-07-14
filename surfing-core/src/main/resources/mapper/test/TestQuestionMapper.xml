@@ -24,6 +24,7 @@
             <result column="qu_content" property="content"/>
             <result column="qu_order_num" property="orderNum"/>
             <result column="order_char" property="orderChar"/>
+            <result column="score" property="score"/>
         </collection>
 
     </resultMap>
@@ -52,6 +53,18 @@
             and create_user = #{createUser}
         </if>
 
+    </select>
+
+    <select id="systemQuestionIds" resultType="java.lang.Long">
+        select id
+        from t_test_question
+        where deleted = 0
+        <if test="type !=null">
+            and create_type = #{type}
+        </if>
+        <if test="userId!=null">
+            and create_user = #{userId}
+        </if>
     </select>
 
 

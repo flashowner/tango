@@ -41,6 +41,11 @@ public class TestQuestionIServiceImpl extends ServiceImpl<TestQuestionMapper, Te
         testQuestion.setCreateType(CreateQuestionTypeEnum.SYSTEM.getType());
         return selectAll(testQuestion);
     }
+
+    @Override
+    public List<Long> systemQuestionIds() {
+        return super.baseMapper.systemQuestionIds(CreateQuestionTypeEnum.SYSTEM.getType(),null);
+    }
 }
 
     

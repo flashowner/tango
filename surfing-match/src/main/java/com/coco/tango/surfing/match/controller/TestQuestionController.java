@@ -36,13 +36,25 @@ public class TestQuestionController extends AbstractBaseController {
 
 
     /**
-     * 获取 系统测试题目
+     * 用户答题 测试题目
      * @return
      */
     @PostMapping
     public HttpRestResult<Boolean> userAnswer(@RequestBody List<UserQuestionAnswerVO> list) throws Exception {
         return responseOK(questionManager.userAnswer(list));
     }
+
+
+    /**
+     * 用户答题 已回答的 测试题目
+     * @return
+     */
+    @GetMapping("/history/answer")
+    public HttpRestResult<List<UserQuestionAnswerVO>> historyAnswer() throws Exception {
+        return responseOK(questionManager.historyAnswer());
+    }
+
+
 
 
 

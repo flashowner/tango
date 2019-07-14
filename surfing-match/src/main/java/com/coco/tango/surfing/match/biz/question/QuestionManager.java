@@ -27,4 +27,10 @@ public interface QuestionManager {
      * @return
      */
     Boolean userAnswer(List<UserQuestionAnswerVO> list) throws Exception;
+
+    /**
+     * 获取 用户 历史 系统 答题信息
+     * @return
+     */
+    List<UserQuestionAnswerVO> historyAnswer();
 }

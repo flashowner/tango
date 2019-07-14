@@ -1,17 +1,21 @@
 package com.coco.tango.surfing.core.service.user.impl;
 
+import com.baomidou.mybatisplus.core.conditions.Wrapper;
+import com.baomidou.mybatisplus.core.conditions.query.LambdaQueryWrapper;
 import com.baomidou.mybatisplus.extension.service.impl.ServiceImpl;
 import com.coco.tango.surfing.common.redis.biz.CommonRedisCache;
 import com.coco.tango.surfing.core.constants.Constant;
 import com.coco.tango.surfing.core.constants.RedisConstant;
 import com.coco.tango.surfing.core.dal.domain.user.TangoUser;
 import com.coco.tango.surfing.core.dal.mapper.user.TangoUserMapper;
+import com.coco.tango.surfing.core.enums.YesOrNoEnum;
 import com.coco.tango.surfing.core.service.user.TangoUserIService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 import org.springframework.util.StringUtils;
 
 import javax.annotation.PostConstruct;
+import java.util.List;
 
 /**
  * Tango 用户 服务接口 实现
@@ -50,6 +54,18 @@ public class TangoUserIServiceImpl extends ServiceImpl<TangoUserMapper, TangoUse
         return super.save(entity);
     }
 
+
+    @Override
+    public int count(Wrapper<TangoUser> queryWrapper) {
+        return super.count(new LambdaQueryWrapper<TangoUser>().eq(TangoUser::getDeleted, YesOrNoEnum.NO.getValue()));
+    }
+
+
+    @Override
+    public List<Long> listByPages(Long currentPage, int size) {
+        Long startRow = currentPage * size;
+        return super.baseMapper.listByPages(startRow, size);
+    }
 
     /**
      * 获取数据库中最大的code 所对应的num

@@ -12,7 +12,7 @@ public class LoginConstant {
     /**
      * 微信 开放 获取 用户 信息 接口
      */
-    public static final String WX_LOGIN_API = "http://api.weixin.qq.com/sns/jscode2session";
+    public static final String WX_LOGIN_API = "https://api.weixin.qq.com/sns/jscode2session";
 
 
 

@@ -9,6 +9,7 @@ import com.coco.tango.surfing.core.dal.domain.user.TangoUser;
 import com.coco.tango.surfing.core.dal.domain.user.WxTangoUser;
 import com.coco.tango.surfing.core.dal.domain.user.WxUser;
 import com.coco.tango.surfing.core.service.user.TangoUserIService;
+import com.coco.tango.surfing.core.service.user.UserQusStateIService;
 import com.coco.tango.surfing.core.service.user.WxTangoUserIService;
 import com.coco.tango.surfing.core.service.user.WxUserIService;
 import com.coco.tango.surfing.user.bean.dto.WxLoginRes;
@@ -46,6 +47,9 @@ public class LoginManagerImpl implements LoginManager {
 
     @Autowired
     private TangoUserIService tangoUserIService;
+
+    @Autowired
+    private UserQusStateIService qusStateIService;
 
 
     @Autowired
@@ -96,11 +100,12 @@ public class LoginManagerImpl implements LoginManager {
             tangoUser.setName(wxLoginUserRes.getNickName());
             tangoUser.setSex(Integer.valueOf(wxLoginUserRes.getGender()));
             tangoUser.setAvatarUrl(wxLoginUserRes.getAvatarUrl());
+            tangoUser.setAge(0);
             tangoUserIService.save(tangoUser);
 
             wxTangoUser = new WxTangoUser();
 
-            wxTangoUser.setTangoUserId(wxUser.getId());
+            wxTangoUser.setWxUserId(wxUser.getId());
             wxTangoUser.setTangoUserId(tangoUser.getId());
 
             wxTangoUserIService.save(wxTangoUser);
@@ -123,6 +128,9 @@ public class LoginManagerImpl implements LoginManager {
         userTokenRedisCache.set(token, WrappedBeanCopier.copyProperties(tangoUser, TangoUserDTO.class));
 
         tangoUserVO.setToken(token);
+
+        // 获取 用户 系统组 题完成情况
+        tangoUserVO.setTestState(qusStateIService.getSysStateByUserId(tangoUser.getId()));
 
         return tangoUserVO;
     }

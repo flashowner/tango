@@ -4,3 +4,17 @@ spring:
     url: jdbc:mysql://127.0.0.1:3306/tango_surfing?autoReconnect=true&characterEncoding=utf-8
     username: root
     password:
+
+
+
+#wx:
+#  app-id: wxf063798da91d5d8e
+#  secret: 49fa43256596ff23c9246d757b0b9d17
+
+
+
+wx:
+  app-id: wx80419bbfd8d360eb
+  secret: b668a4735a2b61dc800dfc61f539487c
+
+

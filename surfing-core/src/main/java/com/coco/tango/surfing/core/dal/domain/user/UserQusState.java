@@ -1,23 +1,26 @@
-package com.coco.tango.surfing.core.dal.domain.test;
+package com.coco.tango.surfing.core.dal.domain.user;
 
 import com.baomidou.mybatisplus.annotation.IdType;
 import com.baomidou.mybatisplus.annotation.TableId;
 import com.baomidou.mybatisplus.annotation.TableLogic;
+import com.baomidou.mybatisplus.annotation.TableName;
 import com.coco.tango.surfing.core.dal.domain.BaseDomain;
 import lombok.Data;
 
 import java.io.Serializable;
 
 /**
- * 用户 答题 记录
+ * 用户答题状态
  *
  * @author ckli01
- * @date 2019-07-09
+ * @date 2019-07-14
  */
 @Data
-public class UserQuestionAnswer extends BaseDomain implements Serializable {
+@TableName("t_user_test_state")
+public class UserQusState extends BaseDomain implements Serializable {
 
-    private static final long serialVersionUID = 2189695859608659719L;
+
+    private static final long serialVersionUID = -5394709598142185498L;
 
 
     /**
@@ -26,26 +29,21 @@ public class UserQuestionAnswer extends BaseDomain implements Serializable {
     @TableId(value = "id", type = IdType.AUTO)
     private Long id;
 
+
     /**
-     * 用户Id
+     * t_user_tango 主键
      */
     private Long userId;
 
     /**
-     * 题目Id
+     * 测试题组 即 create_type
      */
-    private Long questionId;
-
-
-    /**
-     * 用户作答
-     */
-    private String answer;
+    private Integer qusGroup;
 
     /**
-     * 分数
+     * 状态
      */
-    private Double score;
+    private boolean state;
 
 
     /**

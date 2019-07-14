@@ -37,6 +37,12 @@ public class TangoUserVO extends TangoUser {
     private String token;
 
 
+    /**
+     * 测试题完成 状态
+     */
+    private boolean testState;
+
+
 }
 
     

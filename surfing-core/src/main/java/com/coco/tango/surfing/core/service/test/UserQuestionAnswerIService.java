@@ -30,4 +30,22 @@ public interface UserQuestionAnswerIService extends IService<UserQuestionAnswer>
      * @param quesIds
      */
     boolean logicDeleteByUserAndQuesId(Long id, List<Long> quesIds);
+
+    /**
+     * 根据 题目Ids 获取 用户信息
+     *
+     * @param qusIds
+     * @return
+     */
+    List<Long> userQusAnswer(List<Long> qusIds);
+
+
+    /**
+     * 根据 题目Id 用户 编码 获取 答题记录
+     *
+     * @param qusIds
+     * @param userCode
+     * @return
+     */
+    List<UserQuestionAnswer> userQusAnswer(List<Long> qusIds, String userCode);
 }

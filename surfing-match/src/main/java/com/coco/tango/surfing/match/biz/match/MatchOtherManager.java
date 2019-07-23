@@ -1,5 +1,6 @@
 package com.coco.tango.surfing.match.biz.match;
 
+import com.coco.tango.surfing.common.exception.ServiceException;
 import com.coco.tango.surfing.match.bean.vo.MatchPeopleVO;
 
 import java.util.List;
@@ -18,5 +19,5 @@ public interface MatchOtherManager {
      *
      * @return
      */
-    List<MatchPeopleVO> matchOthers();
+    MatchPeopleVO matchOthers() throws Exception;
 }

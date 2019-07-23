@@ -1,9 +1,6 @@
 package com.coco.tango.surfing.core.dal.domain.test;
 
-import com.baomidou.mybatisplus.annotation.IdType;
-import com.baomidou.mybatisplus.annotation.TableId;
-import com.baomidou.mybatisplus.annotation.TableLogic;
-import com.baomidou.mybatisplus.annotation.TableName;
+import com.baomidou.mybatisplus.annotation.*;
 import com.coco.tango.surfing.core.dal.domain.BaseDomain;
 import lombok.Data;
 
@@ -61,6 +58,7 @@ public class TestQuestion extends BaseDomain implements Serializable {
     /**
      * 题目选项信息
      */
+    @TableField(exist = false)
     private List<TestQuestionChoice> testQuestionChoices;
 
 

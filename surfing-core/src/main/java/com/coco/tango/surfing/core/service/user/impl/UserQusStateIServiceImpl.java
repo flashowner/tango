@@ -32,7 +32,6 @@ public class UserQusStateIServiceImpl extends ServiceImpl<UserQusStateMapper, Us
         UserQusState userQusState = super.lambdaQuery()
                 .eq(UserQusState::getUserId, id)
                 .eq(UserQusState::getQusGroup, CreateQuestionTypeEnum.SYSTEM.getType())
-                .eq(UserQusState::getDeleted, YesOrNoEnum.NO.getValue())
                 .one();
 
         return userQusState != null && userQusState.isState();

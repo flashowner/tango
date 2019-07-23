@@ -32,4 +32,17 @@ public interface TestQuestionIService extends IService<TestQuestion> {
      * @return
      */
     List<Long> systemQuestionIds();
+
+    /**
+     * 根据 用户编码 获取 用户设置的题目
+     * @param userCode
+     * @return
+     */
+    List<TestQuestion> userQus(String userCode);
+
+    /**
+     * 批量更新
+     * @param updateList
+     */
+    void updateBatch(List<TestQuestion> updateList);
 }

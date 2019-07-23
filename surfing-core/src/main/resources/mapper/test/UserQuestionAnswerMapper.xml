@@ -1,15 +1,13 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
-<mapper namespace="com.coco.tango.surfing.core.dal.mapper.test.TestQuestionChoiceMapper">
+<mapper namespace="com.coco.tango.surfing.core.dal.mapper.test.UserQuestionAnswerMapper">
 
     <!-- 通用查询映射结果 -->
-    <resultMap id="BaseResultMap" type="com.coco.tango.surfing.core.dal.domain.test.TestQuestionChoice">
+    <resultMap id="BaseResultMap" type="com.coco.tango.surfing.core.dal.domain.test.UserQuestionAnswer">
         <id column="id" property="id"/>
+        <result column="user_id" property="userId"/>
         <result column="question_id" property="questionId"/>
-        <result column="content" property="content"/>
-        <result column="order_num" property="orderNum"/>
-        <result column="order_char" property="orderChar"/>
-        <result column="correct_answer" property="correctAnswer"/>
+        <result column="answer" property="answer"/>
         <result column="score" property="score"/>
 
 
@@ -22,8 +20,17 @@
 
     <!-- 通用查询结果列 -->
     <sql id="Base_Column_List">
-        id,question_id, content, order_num, order_char, correct_answer, score, deleted, create_datetime, update_datetime, create_user, update_user
+        id, user_id, question_id, answer, score, deleted, create_datetime, update_datetime, create_user, update_user
     </sql>
+    <select id="userQusAnswer" resultType="java.lang.Long">
+        select user_id
+        from t_user_question_answer
+        where deleted=0
+        and question_id in
+        <foreach collection="list" index="index" open="(" close=")" separator="," item="item">
+            #{item}
+        </foreach>
+    </select>
 
 
 </mapper>

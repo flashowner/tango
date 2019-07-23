@@ -44,14 +44,15 @@
                  left join t_test_question_choice quc on qu.id = quc.question_id and quc.deleted = 0
         where qu.deleted = 0
         <if test="createType!=null">
-            and create_type = #{createType}
+            and qu.create_type = #{createType}
         </if>
         <if test="questionType!=null">
-            and question_type = #{questionType}
+            and qu.question_type = #{questionType}
         </if>
         <if test="createUser!=null">
-            and create_user = #{createUser}
+            and qu.create_user = #{createUser}
         </if>
+        order by qu.order_num ASC
 
     </select>
 

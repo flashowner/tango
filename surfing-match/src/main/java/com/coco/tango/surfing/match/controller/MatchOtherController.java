@@ -1,11 +1,13 @@
 package com.coco.tango.surfing.match.controller;
 
 import com.coco.tango.surfing.common.bean.HttpRestResult;
+import com.coco.tango.surfing.common.bean.page.Page;
 import com.coco.tango.surfing.common.controller.AbstractBaseController;
 import com.coco.tango.surfing.match.bean.vo.MatchPeopleVO;
 import com.coco.tango.surfing.match.biz.match.MatchOtherManager;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.web.bind.annotation.GetMapping;
+import org.springframework.web.bind.annotation.RequestBody;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RestController;
 
@@ -27,9 +29,11 @@ public class MatchOtherController extends AbstractBaseController {
 
 
     @GetMapping("/others")
-    public HttpRestResult<List<MatchPeopleVO>> matchOthers() {
+    public HttpRestResult<MatchPeopleVO> matchOthers() throws Exception {
         return responseOK(matchOtherManager.matchOthers());
     }
+
+
 
 }
 

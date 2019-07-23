@@ -20,6 +20,6 @@ public interface TangoUserIService extends IService<TangoUser> {
      * @param size
      * @return
      */
-    List<Long> listByPages(Long currentPage, int size);
+    List<TangoUser> listByPages(Integer currentPage, int size);
 
 }

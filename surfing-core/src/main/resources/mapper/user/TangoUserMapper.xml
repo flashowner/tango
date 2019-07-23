@@ -35,8 +35,8 @@
     </select>
 
     <!-- 分页查用户Id -->
-    <select id="listByPages" resultType="java.lang.Long">
-        select id
+    <select id="listByPages" resultType="com.coco.tango.surfing.core.dal.domain.user.TangoUser">
+        select id, code, name, sex, age, birth_day, school, professional, avatar_url
         from t_user_tango
         where deleted = 0
         order by id ASC

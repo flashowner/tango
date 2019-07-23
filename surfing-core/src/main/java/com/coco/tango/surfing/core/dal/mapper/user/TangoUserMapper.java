@@ -31,5 +31,5 @@ public interface TangoUserMapper extends BaseMapper<TangoUser> {
      * @param size
      * @return
      */
-    List<Long> listByPages(@Param("startRow")Long startRow,@Param("size") int size);
+    List<TangoUser> listByPages(@Param("startRow")Integer startRow,@Param("size") int size);
 }

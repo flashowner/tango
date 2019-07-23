@@ -21,7 +21,7 @@ public class WxUserIServiceImpl extends ServiceImpl<WxUserMapper, WxUser> implem
     @Override
     public WxUser findByOpenId(String openId) {
         return super.getOne(new LambdaQueryWrapper<WxUser>().eq(WxUser::getOpenId, openId)
-                .eq(WxUser::getDeleted, YesOrNoEnum.NO.getValue()));
+        );
     }
 
 

@@ -23,7 +23,7 @@ public class WxTangoUserIServiceImpl extends ServiceImpl<WxTangoUserMapper, WxTa
     @Override
     public WxTangoUser findByWxUserId(Long id) {
         return super.getOne(new LambdaQueryWrapper<WxTangoUser>().eq(WxTangoUser::getWxUserId, id)
-                .eq(WxTangoUser::getDeleted, YesOrNoEnum.NO.getValue()));
+        );
     }
 }
 

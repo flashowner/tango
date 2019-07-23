@@ -1,6 +1,7 @@
 package com.coco.tango.surfing.match.redis;
 
 import com.coco.tango.surfing.common.redis.impl.RedisBaseServiceImpl;
+import com.coco.tango.surfing.match.constants.Constant;
 import org.springframework.stereotype.Service;
 
 /**
@@ -11,16 +12,12 @@ import org.springframework.stereotype.Service;
  * @date 2018/7/5
  */
 @Service
-public class UserMatchPageRedisCache extends RedisBaseServiceImpl<String, Long, Long> {
+public class UserMatchPageRedisCache extends RedisBaseServiceImpl<String, Long, Integer> {
 
-    /**
-     * 记录每个用户匹配 redis key
-     */
-    private static final String USER_MATCH_PAGE_REDIS_CACHE_KEY = "user_match_page_redis_cache_key";
 
     @Override
     public String getKey() {
-        return USER_MATCH_PAGE_REDIS_CACHE_KEY;
+        return Constant.USER_MATCH_PAGE_REDIS_CACHE_KEY;
     }
 
 

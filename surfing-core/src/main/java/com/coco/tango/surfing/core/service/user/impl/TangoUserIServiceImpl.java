@@ -57,13 +57,13 @@ public class TangoUserIServiceImpl extends ServiceImpl<TangoUserMapper, TangoUse
 
     @Override
     public int count(Wrapper<TangoUser> queryWrapper) {
-        return super.count(new LambdaQueryWrapper<TangoUser>().eq(TangoUser::getDeleted, YesOrNoEnum.NO.getValue()));
+        return super.count(queryWrapper);
     }
 
 
     @Override
-    public List<Long> listByPages(Long currentPage, int size) {
-        Long startRow = currentPage * size;
+    public List<TangoUser> listByPages(Integer currentPage, int size) {
+        Integer startRow = currentPage * size;
         return super.baseMapper.listByPages(startRow, size);
     }
 

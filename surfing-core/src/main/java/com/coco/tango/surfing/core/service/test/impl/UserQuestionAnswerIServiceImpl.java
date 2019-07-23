@@ -4,7 +4,6 @@ import com.baomidou.mybatisplus.core.conditions.query.LambdaQueryWrapper;
 import com.baomidou.mybatisplus.extension.service.impl.ServiceImpl;
 import com.coco.tango.surfing.core.dal.domain.test.UserQuestionAnswer;
 import com.coco.tango.surfing.core.dal.mapper.test.UserQuestionAnswerMapper;
-import com.coco.tango.surfing.core.enums.YesOrNoEnum;
 import com.coco.tango.surfing.core.service.test.UserQuestionAnswerIService;
 import org.springframework.stereotype.Service;
 
@@ -26,21 +25,33 @@ public class UserQuestionAnswerIServiceImpl extends ServiceImpl<UserQuestionAnsw
         return super.list(new LambdaQueryWrapper<UserQuestionAnswer>()
                 .in(UserQuestionAnswer::getUserId, userIds)
                 .in(UserQuestionAnswer::getQuestionId, sysQuesIds)
-                .eq(UserQuestionAnswer::getDeleted, YesOrNoEnum.NO.getValue()));
+        );
     }
 
 
     @Override
     public boolean logicDeleteByUserAndQuesId(Long id, List<Long> quesIds) {
 
-        UserQuestionAnswer userQuestionAnswer = new UserQuestionAnswer();
-        userQuestionAnswer.setDeleted(YesOrNoEnum.YES.getValue());
-
-        return super.update(userQuestionAnswer, new LambdaQueryWrapper<UserQuestionAnswer>()
+        return super.remove(new LambdaQueryWrapper<UserQuestionAnswer>()
                 .eq(UserQuestionAnswer::getUserId, id)
                 .in(UserQuestionAnswer::getQuestionId, quesIds)
-                .eq(UserQuestionAnswer::getDeleted, YesOrNoEnum.NO.getValue()));
+        );
     }
+
+
+    @Override
+    public List<Long> userQusAnswer(List<Long> qusIds) {
+        return super.baseMapper.userQusAnswer(qusIds);
+    }
+
+
+    @Override
+    public List<UserQuestionAnswer> userQusAnswer(List<Long> qusIds, String userCode) {
+        return super.list(new LambdaQueryWrapper<UserQuestionAnswer>()
+                .in(UserQuestionAnswer::getQuestionId, qusIds)
+                .eq(UserQuestionAnswer::getCreateUser, userCode));
+    }
+
 }
 
     

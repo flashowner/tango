@@ -3,6 +3,7 @@ package com.coco.tango.surfing.core.dal.domain.test;
 import com.baomidou.mybatisplus.annotation.IdType;
 import com.baomidou.mybatisplus.annotation.TableId;
 import com.baomidou.mybatisplus.annotation.TableLogic;
+import com.baomidou.mybatisplus.annotation.TableName;
 import com.coco.tango.surfing.core.dal.domain.BaseDomain;
 import lombok.Data;
 
@@ -15,6 +16,7 @@ import java.io.Serializable;
  * @date 2019-07-09
  */
 @Data
+@TableName("t_user_question_answer")
 public class UserQuestionAnswer extends BaseDomain implements Serializable {
 
     private static final long serialVersionUID = 2189695859608659719L;
